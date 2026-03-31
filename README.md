@@ -48,9 +48,7 @@ password
 
 Line 4 is optional and defaults to `22`.
 
-Do not share a real `ssh.txt` file.
-
-## Shareable Setup
+## Setup
 
 This project is designed so the script itself can be shared without carrying personal machine settings:
 
@@ -59,12 +57,6 @@ This project is designed so the script itself can be shared without carrying per
 - UI state is saved per user in their home directory
 - config is saved per user in their home directory
 - temp files for remote open/preview use a dedicated app temp folder and are cleaned up
-
-Files that should stay private:
-
-- `ssh.txt`
-- `%USERPROFILE%\\.ssh_sftp_file_client_config.json`
-- `%USERPROFILE%\\.ssh_sftp_file_client_state.json`
 
 ## Packaging
 
