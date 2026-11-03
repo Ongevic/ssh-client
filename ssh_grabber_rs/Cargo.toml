@@ -1,0 +1,14 @@
+[package]
+name = "ssh_grabber_rs"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1"
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+crossterm = "0.29"
+dirs = "6"
+ratatui = "0.29"
+russh = { version = "0.59", default-features = false, features = ["ring", "flate2", "rsa"] }
+russh-sftp = "2.1.1"
+tokio = { version = "1", features = ["full"] }
