@@ -830,7 +830,7 @@ class SSHClientApp(ctk.CTk):
                 self.refresh_remote_list()
             except Exception as exc:
                 self.log_message(f"Connection failed: {exc}")
-                self.after(0, lambda: messagebox.showerror("Error", f"Failed to connect: {exc}"))
+                self.after(0, lambda exc=exc: messagebox.showerror("Error", f"Failed to connect: {exc}"))
 
         threading.Thread(target=_connect, daemon=True).start()
 
@@ -952,7 +952,7 @@ class SSHClientApp(ctk.CTk):
                 if exit_code not in (None, "0"):
                     self.after(0, lambda: self.append_terminal_output(f"[exit {exit_code}]"))
             except Exception as exc:
-                self.after(0, lambda: self.append_terminal_output(f"Command failed: {exc}"))
+                self.after(0, lambda exc=exc: self.append_terminal_output(f"Command failed: {exc}"))
 
         threading.Thread(target=_run, daemon=True).start()
 
@@ -1023,7 +1023,7 @@ class SSHClientApp(ctk.CTk):
                 self.after(0, self.refresh_remote_list)
             except Exception as exc:
                 self.log_message(f"Remote path change failed: {exc}")
-                self.after(0, lambda: messagebox.showerror("Invalid remote path", f"Could not open remote path:\n{requested_path}\n\n{exc}"))
+                self.after(0, lambda exc=exc: messagebox.showerror("Invalid remote path", f"Could not open remote path:\n{requested_path}\n\n{exc}"))
                 self.after(0, self.refresh_remote_list)
 
         threading.Thread(target=_go, daemon=True).start()
@@ -1190,7 +1190,7 @@ class SSHClientApp(ctk.CTk):
                 self.refresh_remote_list()
             except Exception as exc:
                 self.log_message(f"Remote rename failed: {exc}")
-                self.after(0, lambda: messagebox.showerror("Rename failed", f"Could not rename remote item: {exc}"))
+                self.after(0, lambda exc=exc: messagebox.showerror("Rename failed", f"Could not rename remote item: {exc}"))
         threading.Thread(target=_rename, daemon=True).start()
 
     def create_remote_folder(self):
@@ -1210,7 +1210,7 @@ class SSHClientApp(ctk.CTk):
                 self.refresh_remote_list()
             except Exception as exc:
                 self.log_message(f"Remote mkdir failed: {exc}")
-                self.after(0, lambda: messagebox.showerror("Create folder failed", f"Could not create remote folder: {exc}"))
+                self.after(0, lambda exc=exc: messagebox.showerror("Create folder failed", f"Could not create remote folder: {exc}"))
         threading.Thread(target=_mkdir, daemon=True).start()
 
     def remove_remote_tree(self, remote_path):
@@ -1295,7 +1295,7 @@ class SSHClientApp(ctk.CTk):
                 if temp_path and os.path.exists(temp_path):
                     os.remove(temp_path)
                 self.log_message(f"Open remote file failed: {exc}")
-                self.after(0, lambda: messagebox.showerror("Open failed", f"Could not open remote file: {exc}"))
+                self.after(0, lambda exc=exc: messagebox.showerror("Open failed", f"Could not open remote file: {exc}"))
 
         threading.Thread(target=_open, daemon=True).start()
 
@@ -1325,7 +1325,7 @@ class SSHClientApp(ctk.CTk):
                 self.refresh_remote_list()
             except Exception as exc:
                 self.log_message(f"Remote delete failed: {exc}")
-                self.after(0, lambda: messagebox.showerror("Delete failed", f"Could not delete remote item: {exc}"))
+                self.after(0, lambda exc=exc: messagebox.showerror("Delete failed", f"Could not delete remote item: {exc}"))
 
         threading.Thread(target=_delete, daemon=True).start()
 
@@ -1344,7 +1344,7 @@ class SSHClientApp(ctk.CTk):
                 if temp_path and os.path.exists(temp_path):
                     os.remove(temp_path)
                 self.log_message(f"Preview failed: {exc}")
-                self.after(0, lambda: messagebox.showerror("Preview failed", f"Could not preview remote file: {exc}"))
+                self.after(0, lambda exc=exc: messagebox.showerror("Preview failed", f"Could not preview remote file: {exc}"))
 
         threading.Thread(target=_preview, daemon=True).start()
 

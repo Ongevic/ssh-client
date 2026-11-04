@@ -12,3 +12,8 @@ ratatui = "0.29"
 russh = { version = "0.59", default-features = false, features = ["ring", "flate2", "rsa"] }
 russh-sftp = "2.1.1"
 tokio = { version = "1", features = ["full"] }
+
+[profile.release]
+lto = "fat"
+codegen-units = 1
+strip = true
